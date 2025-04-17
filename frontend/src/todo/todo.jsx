@@ -9,11 +9,18 @@ export default class Todo extends Component {
     constructor(props) {
         super(props);
         this.handleAdd = this.handleAdd.bind(this)
+        this.handleChange = this.handleChange.bind(this)
+        this.state = {description: '', list:[] }
     }
 
+    handleChange(e) {
+
+        this.setState({...this.state, description: e.target.value})
+
+    }
 
     handleAdd(){
-        console.log(this)
+        console.log(this.state.description)
     }
 
     render() {
@@ -21,7 +28,7 @@ export default class Todo extends Component {
         return (
             <div>
                 <PageHeader name='Tarefas' small='Cadastro'></PageHeader>
-                <TodoForm handleAdd={this.handleAdd}></TodoForm>
+                <TodoForm handleAdd={this.handleAdd} description={this.state.description} handleChange={this.handleChange}></TodoForm>
                 <TodoList></TodoList>
             </div>
         )
